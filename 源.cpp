@@ -6,6 +6,7 @@
 #include <iterator>
 #include <vector>
 #include <windows.h>
+#include <_ZZH_.hpp>
 
 #define N 5
 using namespace std;
@@ -122,12 +123,11 @@ using namespace std;
 	
 
 	int main() {
-		int a[10] = { 6, 1, 2, 7, 9, 3, 4, 5, 10, 8 };
-		FastSort(a,0,9);
-		for (int i = 0; i < 10; i++) {
-			cout << a[i] << endl;
-		}
-
+		float a = 3;
+		cout << ZZH::_abs_(a) << endl;
+		cout << ZZH::_sqe_(a) << endl;
+		cout << ZZH::_pow_(a, 3) << endl;
+		cout << ZZH::_sqrt_(2) << endl;
 
 		cin.get();
 		return 0;
