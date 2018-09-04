@@ -10,6 +10,7 @@
 
 #define N 5
 using namespace std;
+using namespace ZZH;
 
 
 	class person {
@@ -121,13 +122,19 @@ using namespace std;
 	}
 	
 	
-
+	
 	int main() {
-		float a = 3;
-		cout << ZZH::_abs_(a) << endl;
-		cout << ZZH::_sqe_(a) << endl;
-		cout << ZZH::_pow_(a, 3) << endl;
-		cout << ZZH::_sqrt_(2) << endl;
+		float a = 30.0f;
+		vector<int> b;
+		cout << ZZH::_DegreeToRadian_(a)<< endl;
+		cout << ZZH::_RadianToDegree_(a) << endl;
+		for (int i = 0; i < 5; i++) {
+			b.push_back(i);
+		}
+		auto sum =ZZH::_sum_(b);
+		cout << sum << endl;
+
+
 
 		cin.get();
 		return 0;
