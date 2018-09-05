@@ -12,6 +12,8 @@
 using namespace std;
 using namespace ZZH;
 
+void test();
+
 
 	class person {
 	private:
@@ -121,23 +123,27 @@ using namespace ZZH;
 		FastSort(sort_data, i+1, end);
 	}
 	
-	
+
 	
 	int main() {
-		float a = 30.0f;
-		vector<int> b;
-		cout << ZZH::_DegreeToRadian_(a)<< endl;
-		cout << ZZH::_RadianToDegree_(a) << endl;
-		for (int i = 0; i < 5; i++) {
-			b.push_back(i);
-		}
-		auto sum =ZZH::_sum_(b);
-		cout << sum << endl;
-
-
-
+		test();
 		cin.get();
 		return 0;
 	}
 
+
+
+
+
+	void test() {
+		_vector3D_  d1(1.0,2.0,3.0);
+		_vector3D_  d2(15.0, 25.0, 35.0);
+		_vector3D_ d3;
+		d3 = d2._crossProduct_(d1, d2);
+		
+		d3._print_();
 	
+	
+
+
+	}
