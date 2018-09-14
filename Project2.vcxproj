@@ -70,16 +70,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\ORB_test\Depends;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\display\display;D:\Work_software\VS_2017\vs_2017_Project\ORB_test\Depends;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\display\display;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\ORB_test\Depends;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\display\display;D:\Work_software\VS_2017\vs_2017_Project\ORB_test\Depends;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Work_software\VS_2017\vs_2017_Project\display\display;D:\Work_software\VS_2017\vs_2017_Project\Project2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

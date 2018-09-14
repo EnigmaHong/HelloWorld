@@ -143,22 +143,22 @@ namespace ZZH {
 
 	};
 
-	class _vector3D_ {
+	class _vector_ {
 	private:
 		float x, y, z;
 	public :
-		_vector3D_() {}
-		_vector3D_(const _vector3D_ &src) :x(src.x), y(src.y), z(src.z) {}
-		_vector3D_(float nx, float ny, float nz) :x(nx), y(ny), z(nz) {}
-		_vector3D_ &operator =(const _vector3D_ &src) {
+		_vector_() {}
+		_vector_(const _vector_ &src) :x(src.x), y(src.y), z(src.z) {}
+		_vector_(float nx, float ny, float nz) :x(nx), y(ny), z(nz) {}
+		_vector_ &operator =(const _vector_ &src) {
 			x = src.x; y = src.y; z = src.z;
 			return *this;
 		}
-		bool operator ==(const _vector3D_ &src)const {//d1==d2  判断两向量是否所有元素相等,返回1全相等，0不全相等
-			return x == src.x && y == src.y && z == src.z;
+		bool operator ==(const _vector_ &src)const {//d1==d2  判断两向量是否所有元素相等,返回1全相等，0不全相等
+			return x == src.x && y == src.y && z == src.z ;
 		}
-		bool operator !=(const _vector3D_ &src)const {//d1!=d2 返回1全不等，0全相等
-			return x != src.x || y != src.y || z != src.z;
+		bool operator !=(const _vector_ &src)const {//d1!=d2 返回1全不等，0全相等
+			return x != src.x || y != src.y || z != src.z ;
 		}
 
 		void _print_() {//打印一个三维向量 d1._print_()
@@ -166,39 +166,39 @@ namespace ZZH {
 			std::cout << "[" << x << "," << y << "," << z << "]" << std::endl;
 		}
 		void _zero_() { x = y = z = 0.0f; }//d1._zero_() 将d1所有元素设置为0
-		_vector3D_ operator -()const {//-(d1) 所有元素取负
-			return _vector3D_(-x, -y, -z);
+		_vector_ operator -()const {//-(d1) 所有元素取负
+			return _vector_(-x, -y, -z);
 		}
-		_vector3D_ operator +(const _vector3D_ &src)const {//d3 = d1+d2
-			return _vector3D_(x + src.x, y + src.y, z + src.z);
+		_vector_ operator +(const _vector_ &src)const {//d3 = d1+d2
+			return _vector_(x + src.x, y + src.y, z + src.z);
 		}
-		_vector3D_ operator -(const _vector3D_ &src)const {//d3 = d1-d2
-			return _vector3D_(x - src.x, y - src.y, z - src.z);
+		_vector_ operator -(const _vector_ &src)const {//d3 = d1-d2
+			return _vector_(x - src.x, y - src.y, z - src.z);
 		}
 
-		_vector3D_ operator *(const float a)const {//d3 = d1*a
-			return _vector3D_(x*a, y*a, z*a);
+		_vector_ operator *(const float a)const {//d3 = d1*a
+			return _vector_(x*a, y*a, z*a);
 		}
-		_vector3D_ operator /(const float a)const {//d3 = d1/a
+		_vector_ operator /(const float a)const {//d3 = d1/a
 			//assert(a == 0.0, "Bad arguments.....leading to division by zero");//bug
 		    auto temp = 1.0 / a;
-			return _vector3D_(x*temp, y*temp, z*temp);
+			return _vector_(x*temp, y*temp, z*temp);
 		}
 
-		_vector3D_ operator +=(const _vector3D_ &src) {//d1 +=d2 
-			return _vector3D_(x += src.x, y += src.y, z += src.z);
+		_vector_ operator +=(const _vector_ &src) {//d1 +=d2 
+			return _vector_(x += src.x, y += src.y, z += src.z);
 		}
-		_vector3D_ operator -=(const _vector3D_ &src) {//d1-=d2
+		_vector_ operator -=(const _vector_ &src) {//d1-=d2
 			x -= src.x; y -= src.y; z -= src.z;
 			return *this;
 		}
-		_vector3D_ operator *=(const float &a) {//d1*=a
-			return _vector3D_(x *= a, y *= a, z *= a);
+		_vector_ operator *=(const float &a) {//d1*=a
+			return _vector_(x *= a, y *= a, z *= a);
 		}
-		_vector3D_ operator /=(const float &a) {//d1 /=a
+		_vector_ operator /=(const float &a) {//d1 /=a
 			//assert(a == 0.0, "Bad arguments.....leading to division by zero");//bug
 			auto temp = 1.0 / a;
-			return _vector3D_(x*=temp, y*=temp, z*=temp);
+			return _vector_(x*=temp, y*=temp, z*=temp);
 		}
 
 		void _normalize_() {//d1._normalize_(); 向量标准化
@@ -207,7 +207,7 @@ namespace ZZH {
 			x *= temp; y *= temp; z *= temp;
 		}
 
-		float operator *(const _vector3D_ &src) const{//d = d1* d2 计算两向量的点乘，返回一个数
+		float operator *(const _vector_ &src) const{//d = d1* d2 计算两向量的点乘，返回一个数
 			return (x*src.x + y * src.y + z * src.z);
 		}
 	
@@ -215,11 +215,11 @@ namespace ZZH {
 			return _sqrt_(x*x+y*y+z*z);
 		}
 
-		inline _vector3D_ _crossProduct_(const _vector3D_ &src1,const _vector3D_ &src2) const{//d3 = d1._crossProduct_(d1, d2);  计算两向量叉积
-			return _vector3D_(src1.y*src2.z- src1.z*src2.y, src1.z*src2.x- src1.x*src2.z, src1.x*src2.y- src1.y*src2.x);
+		inline _vector_ _crossProduct_(const _vector_ &src1,const _vector_ &src2) const{//d3 = d1._crossProduct_(d1, d2);  计算两向量叉积
+			return _vector_(src1.y*src2.z- src1.z*src2.y, src1.z*src2.x- src1.x*src2.z, src1.x*src2.y- src1.y*src2.x);
 		}
 
-		inline float _distance_(const _vector3D_ &src1, const _vector3D_ &src2) const{//d3 = d1._distance_(d1, d2) 计算两向量距离
+		inline float _distance_(const _vector_ &src1, const _vector_ &src2) const{//d3 = d1._distance_(d1, d2) 计算两向量距离
 			auto dx = src1.x - src2.x;
 			auto dy = src1.y - src2.y;
 			auto dz = src1.z - src2.z;
@@ -228,7 +228,83 @@ namespace ZZH {
 
 	};
 
-	
+	class _matrix_ {
+	private:
+		int m;
+		int n;
+		float *arr;
+	public:
+		_matrix_(int mm = 0, int nn = 0) {
+			m = mm;
+			n = nn;
+		}
+		inline void set_m(int mm) {
+			m = mm;
+		}
+		inline void set_n(int nn) {
+			n = nn;
+		}
+		inline void init_matrix() {
+			arr = new float[m*n];
+		}
+		inline void free_matrix() {
+			delete []arr;
+		}
+		inline float read(int i,int j) {
+			if (i >= m || j >= n) {
+				return -321467931;
+			}
+			return *(arr + i * n + j);
+		}
+		inline int write(int i, int j, float val) {
+			if (i >= m || j >= n) {
+				return -1;
+			}
+			*(arr + i * n + j) = val;
+			return 1;
+		}
+		inline int _row_() {
+			return m;
+		}
+		inline int _col_() {
+			return n;
+		}
+	};
+	class _matrix_calc_ {
+	private:
+	public:
+		_matrix_calc_() {
+		
+		}
+		inline int _add_(_matrix_ *src1, _matrix_ *src2,_matrix_ *src) {
+			return 100;
+		}
+		inline int _subtract_(_matrix_ *src1, _matrix_ *src2, _matrix_ *src) {
+		
+		}
+		inline void _multiply_(_matrix_ src1, _matrix_ src2, _matrix_ *src) {
+			auto sum = 0;
+			for (int i = 0; i <src1._row_(); i++) {
+				for (int j = 0; j < src2._col_(); j++) {
+					sum += src1.read(i, j)*src2.read(j,i);
+				}
+				for (int k = 0; k < src->_row_(); k++) {
+					src->write(i, k, sum);
+					sum = 0;
+				}
+				
+			}
+		}
+		inline int _transpos(_matrix_ *src1, _matrix_ *src2) {
+		
+		}
+		inline int inverse(_matrix_ *src1, _matrix_ *src2) {
+		
+		}
+		
+
+
+	};
 	
 
 }

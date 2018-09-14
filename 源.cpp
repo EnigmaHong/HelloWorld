@@ -136,14 +136,24 @@ void test();
 
 
 	void test() {
-		_vector3D_  d1(1.0,2.0,3.0);
-		_vector3D_  d2(15.0, 25.0, 35.0);
-		_vector3D_ d3;
-		d3 = d2._crossProduct_(d1, d2);
-		
-		d3._print_();
+		ZZH::_matrix_ mat(3,3);
+		ZZH::_matrix_ mat2(3, 3);
+		 mat.init_matrix() ;
+		 mat2.init_matrix();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				float var = i+j;
+				auto var2 = 1.0;
+				mat.write(i, j, var);
+				mat2.write(i,j, var2);
+				cout << mat.read(i, j)<<" "  ;
+			}
+			cout << endl;
+		} 
+		_matrix_ mat3(3,3);
+		mat3.init_matrix();
 	
-	
+
 
 
 	}
