@@ -10,7 +10,7 @@
 #include <typeinfo>
 #include <utility>
 
-#include "__CSC__/csc.hpp"
+#include "csc.hpp"
 //#include "__CSC__/csc_array.hpp"
 //#include "__CSC__/csc_algorithm.hpp"
 //#include "__CSC__/csc_stream.hpp"
@@ -23,6 +23,7 @@
 
 #define _eps_ 1e-6;
 #define _PI_ 3.14159265358979323846
+#define IMGNUM 100000
 
 //常用的函数一般不使用宏定义
 //#ifndef _max_  //_max_(a,b)返回最大值
@@ -60,6 +61,8 @@ template <class _TYPE>
 using DEF = _TYPE;
 template<class _TYPE>
 using PTR = _TYPE * ;
+
+char img_files[IMGNUM][1000];
 
 
 namespace ZZH {
@@ -230,81 +233,192 @@ namespace ZZH {
 
 	class _matrix_ {
 	private:
-		int m;
-		int n;
-		float *arr;
+		int m;//矩阵行
+		int n;//矩阵列
+		float **arr;//保存二维数组的元素
 	public:
-		_matrix_(int mm = 0, int nn = 0) {
+		_matrix_() {
+			//默认构造函数
+		}
+		_matrix_(int mm, int nn) {
 			m = mm;
 			n = nn;
+			arr = (float **)malloc(sizeof(float *)*m);
+			for (int i = 0; i < m; i++) {
+				*(arr + i) = (float *)malloc(sizeof(float)*n);
+			}//给矩阵分配内存
+			/*std::cout << "初始化矩阵，以空格隔开，请输入数:" << std::endl;
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					std::cin >> arr[i][j];
+				}
+			}*/
 		}
-		inline void set_m(int mm) {
-			m = mm;
+
+		inline int _write_(int i,int j,float src) {//初始化矩阵 mat1._write_(i, j, i);
+			arr[i][j] = src;
+			return 0;
 		}
-		inline void set_n(int nn) {
-			n = nn;
-		}
-		inline void init_matrix() {
-			arr = new float[m*n];
-		}
-		inline void free_matrix() {
-			delete []arr;
-		}
-		inline float read(int i,int j) {
-			if (i >= m || j >= n) {
-				return -321467931;
+		
+		_matrix_(const _matrix_ &is) {//拷贝构造函数
+			m = is.m;
+			n = is.n;
+			arr = new float*[m];
+			for (int i = 0; i < m; i++) {
+				arr[i] = new float[n];
 			}
-			return *(arr + i * n + j);
+			arr = is.arr;
 		}
-		inline int write(int i, int j, float val) {
-			if (i >= m || j >= n) {
+
+		inline int _Madd_(const _matrix_ & is) {//矩阵加法运算 mat1._Madd_(mat2);
+			if (m != is.m || n != is.n) {
+				std::cout << "行列必须一致" << std::endl;
 				return -1;
 			}
-			*(arr + i * n + j) = val;
-			return 1;
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					arr[i][j] += is.arr[i][j];
+				}
+			}
+			return 0;
 		}
+
+		inline _matrix_ _Mmul_(const _matrix_ & is) {//矩阵相乘mat3 = mat2._Mmul_(mat1);
+			if (this->n != is.n) {
+				std::cout << "不符合矩阵相乘规则." << std::endl;
+			}
+			_matrix_ M(this->m, is.n);
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					M.arr[i][j] = 0;
+					for (int k = 0; k < is.m; k++) {
+						M.arr[i][j] += this->arr[i][k] * is.arr[k][j];
+					}
+				}
+			}
+			return M;
+		}
+
+		inline void _display_() {
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					std::cout << arr[i][j]<<" ";
+				}
+				std::cout << std::endl;
+			}
+			std::cout << std::endl;
+		}
+
 		inline int _row_() {
 			return m;
 		}
 		inline int _col_() {
 			return n;
 		}
+
+		
 	};
-	class _matrix_calc_ {
+
+	class _Algoritm_ {
 	private:
-	public:
-		_matrix_calc_() {
-		
-		}
-		inline int _add_(_matrix_ *src1, _matrix_ *src2,_matrix_ *src) {
-			return 100;
-		}
-		inline int _subtract_(_matrix_ *src1, _matrix_ *src2, _matrix_ *src) {
-		
-		}
-		inline void _multiply_(_matrix_ src1, _matrix_ src2, _matrix_ *src) {
-			auto sum = 0;
-			for (int i = 0; i <src1._row_(); i++) {
-				for (int j = 0; j < src2._col_(); j++) {
-					sum += src1.read(i, j)*src2.read(j,i);
-				}
-				for (int k = 0; k < src->_row_(); k++) {
-					src->write(i, k, sum);
-					sum = 0;
-				}
-				
-			}
-		}
-		inline int _transpos(_matrix_ *src1, _matrix_ *src2) {
-		
-		}
-		inline int inverse(_matrix_ *src1, _matrix_ *src2) {
-		
-		}
-		
 
+	public:
+		template<typename T>
+		inline T const & _Mi_mod_(T src1,T src2,T const& mod_data) {//计算src1^src2 % mod_data 使用位运算
+			T res = 1 % mod_data;
+			while (src2)
+			{
+				if (src2 & 1) {
+					res = res * 1ll * src1 % mod_data;//1ll 表示转换为long long型
+				}
+				src1 = src1 * src1 * 1ll % mod_data;
+				src2 >>= 1;
+			}
+			return res;
+		}
+
+		template<typename T>
+		inline T const & _More_Mi_(T src1, T src2) 
+		{//计算src1^src2
+			T res = 1;
+			while (src2) {
+				if (src2 & 1) {
+					res = res * 1ll * src1;
+				}
+				src1 = src1 * src1 * 1ll;
+				src2 >>= 1;
+			}
+			return res;
+		}
+
+		template<typename T>
+		 inline T const & _Fibonacci_( T const &num,T array[]) 
+		 {//斐波那契数列
+			array[num] ;
+			array[0] = 1;
+			array[1] = 1;
+			for (int i = 2; i < num; i++) {
+				array[i] = array[i - 1] + array[i-2];
+			}
+			return 0;
+		}
+
+		 template<typename T>
+		 inline T const & _Bubble_(T const & len,T array[])
+		 {//冒泡排序算法
+			 for (int i = len-1; i >0; i--) {
+				 for (int j = 0; j < i; j++) {
+					 if (array[j] > array[j+1]) {
+						 T temp = array[j+1];
+						 array[j+1] = array[j];
+						 array[j] = temp;
+					 }
+				 }
+			 }
+			 return 0;
+		 }
+		 template<typename T>
+		 inline T const & _Binary_(T const & len,T const & data,T array[])
+		 {//二分查找算法
+			 T start = 0;
+			 T end = len - 1;
+			 while (start <= end) {
+				 T temp = (start + end) / 2;
+				 if (array[temp] == data) {
+					 return temp;
+				 }
+				 if (array[temp] < data) {
+					 start = temp + 1;
+				 }
+				 else {
+					 end = temp - 1;
+				 }
+			 }
+			 return len;
+		 }
+
+		 template<typename T>
+		 inline bool const & _Sort_(T const & len,T array[]) 
+		 {//判读数组是否是有序
+			 T pop = array[0];
+			 for (int i = 0; i < len - 1; i++) {
+				 if (array[i] > array[i + 1]) {
+					 if (array[i] != pop) {
+						 return false;
+					 }
+					 T temp = array[i + 1];
+					 array[i + 1] = array[i];
+					 array[i] = temp;
+					 pop = array[i + 1];
+				 }
+			 }
+			 return true;
+		 }
 
 	};
+
 	
+
+
 
 }

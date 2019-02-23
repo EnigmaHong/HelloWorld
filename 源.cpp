@@ -136,24 +136,14 @@ void test();
 
 
 	void test() {
-		ZZH::_matrix_ mat(3,3);
-		ZZH::_matrix_ mat2(3, 3);
-		 mat.init_matrix() ;
-		 mat2.init_matrix();
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				float var = i+j;
-				auto var2 = 1.0;
-				mat.write(i, j, var);
-				mat2.write(i,j, var2);
-				cout << mat.read(i, j)<<" "  ;
-			}
-			cout << endl;
-		} 
-		_matrix_ mat3(3,3);
-		mat3.init_matrix();
 	
-
-
+		ZZH::_Algoritm_ a;
+		int arr[] = { 1,34,78,56,100,145 ,200,201,};
+		auto res = a._Sort_(8, arr);
+		
+			cout << res<< endl;
+		
+		
 
 	}
+	
