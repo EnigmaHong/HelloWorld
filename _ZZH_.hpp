@@ -140,8 +140,7 @@ namespace ZZH {
 			return init;
 		}
 
-		
-
+	
 
 
 	};
@@ -324,7 +323,7 @@ namespace ZZH {
 
 	public:
 		template<typename T>
-		inline T const & _Mi_mod_(T src1,T src2,T const& mod_data) {//计算src1^src2 % mod_data 使用位运算
+		inline T const & _Mi_mod_(T src1, T src2, T const& mod_data) {//计算src1^src2 % mod_data 使用位运算
 			T res = 1 % mod_data;
 			while (src2)
 			{
@@ -338,7 +337,7 @@ namespace ZZH {
 		}
 
 		template<typename T>
-		inline T const & _More_Mi_(T src1, T src2) 
+		inline T const & _More_Mi_(T src1, T src2)
 		{//计算src1^src2
 			T res = 1;
 			while (src2) {
@@ -352,69 +351,175 @@ namespace ZZH {
 		}
 
 		template<typename T>
-		 inline T const & _Fibonacci_( T const &num,T array[]) 
-		 {//斐波那契数列
-			array[num] ;
+		inline T const & _Fibonacci_(T const &num, T array[])
+		{//斐波那契数列
+			array[num];
 			array[0] = 1;
 			array[1] = 1;
 			for (int i = 2; i < num; i++) {
-				array[i] = array[i - 1] + array[i-2];
+				array[i] = array[i - 1] + array[i - 2];
 			}
 			return 0;
 		}
 
-		 template<typename T>
-		 inline T const & _Bubble_(T const & len,T array[])
-		 {//冒泡排序算法
-			 for (int i = len-1; i >0; i--) {
-				 for (int j = 0; j < i; j++) {
-					 if (array[j] > array[j+1]) {
-						 T temp = array[j+1];
-						 array[j+1] = array[j];
-						 array[j] = temp;
-					 }
-				 }
-			 }
-			 return 0;
-		 }
-		 template<typename T>
-		 inline T const & _Binary_(T const & len,T const & data,T array[])
-		 {//二分查找算法
-			 T start = 0;
-			 T end = len - 1;
-			 while (start <= end) {
-				 T temp = (start + end) / 2;
-				 if (array[temp] == data) {
-					 return temp;
-				 }
-				 if (array[temp] < data) {
-					 start = temp + 1;
-				 }
-				 else {
-					 end = temp - 1;
-				 }
-			 }
-			 return len;
-		 }
+		template<typename T>
+		inline T const & _Bubble_(T const & len, T array[])
+		{//冒泡排序算法
+			for (int i = len - 1; i > 0; i--) {
+				for (int j = 0; j < i; j++) {
+					if (array[j] > array[j + 1]) {
+						T temp = array[j + 1];
+						array[j + 1] = array[j];
+						array[j] = temp;
+					}
+				}
+			}
+			return 0;
+		}
+		template<typename T>
+		inline T const & _Binary_(T const & len, T const & data, T array[])
+		{//二分查找算法
+			T start = 0;
+			T end = len - 1;
+			while (start <= end) {
+				T temp = (start + end) / 2;
+				if (array[temp] == data) {
+					return temp;
+				}
+				if (array[temp] < data) {
+					start = temp + 1;
+				}
+				else {
+					end = temp - 1;
+				}
+			}
+			return len;
+		}
 
-		 template<typename T>
-		 inline bool const & _Sort_(T const & len,T array[]) 
-		 {//判读数组是否是有序
-			 T pop = array[0];
-			 for (int i = 0; i < len - 1; i++) {
-				 if (array[i] > array[i + 1]) {
-					 if (array[i] != pop) {
-						 return false;
-					 }
-					 T temp = array[i + 1];
-					 array[i + 1] = array[i];
-					 array[i] = temp;
-					 pop = array[i + 1];
-				 }
-			 }
-			 return true;
-		 }
+		template<typename T, size_t N>
+		inline size_t const & _Count_(T const(&array)[N])
+		{//函数模板参数自动返回数组长度
+			return N;
+		}
 
+		template<typename T>
+		inline bool const & _Sort_(T const & len, T array[])
+		{//判读数组是否是有序
+			T pop = array[0];
+			for (int i = 0; i < len - 1; i++) {
+				if (array[i] > array[i + 1]) {
+					if (array[i] != pop) {
+						return false;
+					}
+					T temp = array[i + 1];
+					array[i + 1] = array[i];
+					array[i] = temp;
+					pop = array[i + 1];
+				}
+			}
+			return true;
+		}
+
+		template<typename T>
+		inline T const & _Factorial_(T const & src)
+		{//递归计算阶乘
+			if (src == 1) {
+				return 1;
+			}
+			else {
+				return src * _Factorial_(src - 1);
+			}
+		}
+
+		template<typename T>
+		inline T const & _Sum_(T const & len, T const array[])
+		{//使用递归算法求数组元素和
+			if (len == 0) {
+				return 0;
+			}
+			else {
+				T size = len - 1;
+				if (size == 0) {
+					return array[0];
+				}
+				else {
+					return array[size] + _Sum_(size, array);
+				}
+			}
+		}
+
+		template<typename T>
+		inline T const &_Maxvalue_(T const & len, T const array[])
+		{//使用递归算法计算数组最大值
+			if (len == 0) {
+				return 0;
+			}
+			else {
+				T size = len - 1;
+				if (size == 0) {
+					return array[0];
+				}
+				else {
+					if (_Maxvalue_(size, array) < array[size]) {
+						return array[size];
+					}
+					else {
+						return _Maxvalue_(size, array);
+					}
+				}
+			}
+		}
+
+		template<typename T>
+		inline T const &_Minvalue_(T const & len, T const array[])
+		{//使用递归算法计算数组最小值
+			if (len == 0) {
+				return 0;
+			}
+			else {
+				T size = len - 1;
+				if (size == 0) {
+					return array[0];
+				}
+				else {
+					if (_Minvalue_(size, array) < array[size]) {
+						return _Minvalue_(size, array);
+					}
+					else {
+						return array[size];
+					}
+				}
+			}
+		}
+
+		template<typename T>
+		inline T const & _FastSort_(T left, T right, T array[])
+		{//使用递归实现快速排序算法
+			T pivot = array[left];
+			if (left > right) return -1;
+			int i = left;
+			int j = right;
+			while (i < j) {
+				while (array[j] >= pivot && i < j) {
+					j--;
+				}
+				while (array[i] <= pivot && i < j) {
+					i++;
+				}
+				if (i < j) {
+					auto temp = array[j];
+					array[j] = array[i];
+					array[i] = temp;
+				}
+			}
+			array[left] = array[i];
+			array[i] = pivot;
+			_FastSort_(left, i - 1, array);
+			_FastSort_(i + 1, right, array);
+		}
+
+		
+		
 	};
 
 	

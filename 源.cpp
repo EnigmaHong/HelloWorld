@@ -123,6 +123,9 @@ void test();
 		FastSort(sort_data, i+1, end);
 	}
 	
+	
+
+
 
 	
 	int main() {
@@ -130,20 +133,15 @@ void test();
 		cin.get();
 		return 0;
 	}
-
-
-
-
-
 	void test() {
-	
 		ZZH::_Algoritm_ a;
-		int arr[] = { 1,34,78,56,100,145 ,200,201,};
-		auto res = a._Sort_(8, arr);
-		
-			cout << res<< endl;
-		
-		
+		int arr[] = {2,4,6,1,7,5,9};
+		a._FastSort_(0, 6, arr);
+		for (int i = 0; i < 7; i++) {
+			cout << arr[i] << endl;
+		}
+		auto res = a._Count_(arr);
+		cout << res << endl;
 
 	}
 	
