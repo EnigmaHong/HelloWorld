@@ -1,0 +1,11 @@
+﻿  源.cpp
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(200): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(216): warning C4244: “*=”: 从“double”转换到“float”，可能丢失数据
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(222): warning C4244: “*=”: 从“double”转换到“float”，可能丢失数据
+d:\zzh\vs_2017\helloworld\源.cpp(13): warning C4005: “RECT_AREA”: 宏重定义
+  d:\zzh\vs_2017\helloworld\源.cpp(12): note: 参见“RECT_AREA”的前一个定义
+d:\zzh\vs_2017\helloworld\源.cpp(14): warning C4005: “RECT_AREA”: 宏重定义
+  d:\zzh\vs_2017\helloworld\源.cpp(13): note: 参见“RECT_AREA”的前一个定义
+d:\zzh\vs_2017\helloworld\源.cpp(15): warning C4005: “RECT_AREA”: 宏重定义
+  d:\zzh\vs_2017\helloworld\源.cpp(14): note: 参见“RECT_AREA”的前一个定义
+  Project2.vcxproj -> D:\ZZH\VS_2017\HelloWorld\x64\Debug\Project2.exe

@@ -9,6 +9,7 @@
 #include <_ZZH_.hpp>
 
 #define N 5
+
 using namespace std;
 using namespace ZZH;
 
@@ -124,6 +125,7 @@ void test();
 	}
 	
 	
+	
 
 
 
@@ -134,14 +136,14 @@ void test();
 		return 0;
 	}
 	void test() {
-		ZZH::_Algoritm_ a;
-		int arr[] = {2,4,6,1,7,5,9};
-		a._FastSort_(0, 6, arr);
-		for (int i = 0; i < 7; i++) {
-			cout << arr[i] << endl;
-		}
-		auto res = a._Count_(arr);
-		cout << res << endl;
+		char ccString1[] = "Is Page Fault??";
+		char ccString2[] = "No Page Fault??";
+		strcpy(ccString1, "No");
+		if (strcmp(ccString1, ccString2) == 0)
+			cout << ccString2;
+		else
+			cout << ccString1;
+		
 
 	}
 	

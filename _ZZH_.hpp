@@ -9,6 +9,8 @@
 #include <exception>
 #include <typeinfo>
 #include <utility>
+#include <unordered_map>
+#include <assert.h>
 
 #include "csc.hpp"
 //#include "__CSC__/csc_array.hpp"
@@ -34,6 +36,7 @@
 //#define _min_(a,b)			   (((a)<(b)) ? (a) : (b))
 //#endif // ! _min_
 
+using namespace std;
 using VAR32 = std::int32_t;
 using VAR64 = std::int64_t;
 
@@ -138,6 +141,16 @@ namespace ZZH {
 				first++;
 			}
 			return init;
+		}
+
+		template <typename _SRC>//判断两个浮点数是否相等
+		inline const bool _equal_float_(const _SRC X,const _SRC Y) {
+			const float EPSINON = 0.000001;
+			if ((X - Y >= -EPSINON) && (X - Y <= EPSINON)) {
+				return true;
+			}
+			else
+				return false;
 		}
 
 	
@@ -520,6 +533,176 @@ namespace ZZH {
 
 		
 		
+		
+		
+	};
+
+	class Solution {
+	public:
+		template<typename T>
+		inline std::vector<T> _twoSum_(std::vector<T>& array, int target)
+		{//判断 nums[i]+nums[j]nums[i]+nums[j] 是否等于 target(暴力枚举)
+			int len = array.size();
+			std::vector<T>res;
+			for (int i = len - 1; i >= 0; i--) {
+				for (int j = 0; j < i; j++) {
+					if ((array[i] + array[j]) == target) {
+						res = std::vector<T>({ j,i });
+						return res;
+					}
+				}
+			}
+		}
+
+		template<typename T>
+		inline std::vector<T> const & _TwoSum_hash_(std::vector<T> array, T target)
+		{
+			std::vector<T>res;
+			std::unordered_map<T, T>hash;//内部实现一个哈希表，无序
+			for (int i = 0; i < array.size(); i++) {
+				int another = target - array[i];
+				if (hash.count(another)) {//hash.count(value)判断哈希表中是否存在value值
+					res = std::vector<T>({ hash[another],i });
+					break;
+				}
+				hash[array[i]] = i;
+			}
+			return res;
+		}
+
+		template<typename T>
+		inline T const & _For_(T N)
+		{
+			T count = 0;
+			while (N != 1) {
+				if (N % 2 == 1) {
+					N = 3 * N + 1;
+				}
+				else {
+					N = N / 2;
+				}
+				count++;
+			}
+			return count;
+		}
+
+		template<typename T>
+		inline T const & _digit_(T N)
+		{
+			T count = 0;
+			while (N) {
+				N = N / 10;
+				count++;
+			}
+			return count;
+		}
+
+		
+		inline void  _daffodil_() 
+		{
+			for (int i = 100; i < 1000; i++) {
+				int height = i / 100;
+				int mid = (i / 10) % 10;
+				int low = i % 10;
+				if (i == (height*height*height + mid * mid * mid + low * low*low)) {
+					cout << i << endl;
+				}
+			}
+		}
+
+		template<typename T>
+		inline T const & _hanxin_(T const &src1, T const &src2, T const &src3)
+		{
+			if (src1 >= 3 || src2 >= 5 || src3 >= 7) {
+				return -1;
+			}
+			for (int i = 10; i < 101; i++) {
+				if (i % 3 == src1 && i % 5 == src2 && i % 7 == src3) {
+					return i;
+				}
+			}
+			cout << "No answer" << endl;
+		}
+
+		template<typename T>
+		inline T const & _triangle_(T const & N)
+		{
+			for (int i = N; i > 0; i--) {
+				for (int k = 0; k < N - i; k++) {
+					cout << " ";
+				}
+				for (int j = 0; j < 2 * i - 1; j++) {
+					cout << "#";
+				}
+				cout << endl;
+			}
+			return 0;
+		}
+
+		template<typename T>
+		inline T const & _harmony_(T const &N)
+		{
+			T sum = 0;
+			for (int i = 1; i <= N; i++) {
+				sum = sum + (1.0 / i);
+			}
+			return sum;
+		}
+
+		template<typename T>
+		inline T const & _approximation_(T const &N)
+		{
+			T sum = 0;
+			int count = 0;
+			for (int i = 1; i <= N; i=i+2) {
+				sum = pow(-1.0,count)*(1.0 / i) + sum;
+				count++;
+			}
+			return sum;
+		}
+
+		template<typename T>
+		inline T const & _subsequence_(T const & n, T const & m)
+		{
+			T sum = 0.0;
+			for (int i = n; i <= m; i++) {
+				sum = sum + (1.0 / (i*i));
+			}
+			return sum;
+		}
+
+		template<typename T>
+		inline char* _replaceSpaces_(T &str) {
+			assert(str != NULL);
+			int count = 0;
+			int length_befor = 0;
+			int length_after = 0;
+			
+			for (int i = 0; str[i] != '\0'; i++) {
+				length_befor++;
+				if (str[i] == ' ') {
+					count++;
+				}
+			}
+			length_after = length_befor + 2 * count;
+			char *pstr1 = str+ length_befor;
+			char *pstr2 = str + length_after;
+			
+			while (pstr1 != pstr2) {
+				if (*pstr1 == ' ') {
+					*pstr2-- = '0';
+					*pstr2-- = '2';
+					*pstr2-- = '%';
+				}
+				else {
+					*pstr2-- = *pstr1;
+				}
+				pstr1--;
+			}
+			return pstr1;
+		}
+
+
 	};
 
 	

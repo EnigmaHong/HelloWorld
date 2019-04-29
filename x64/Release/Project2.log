@@ -1,0 +1,10 @@
+﻿  源.cpp
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(188): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(204): warning C4244: “*=”: 从“double”转换到“float”，可能丢失数据
+d:\zzh\vs_2017\helloworld\_zzh_.hpp(210): warning C4244: “*=”: 从“double”转换到“float”，可能丢失数据
+  正在生成代码
+  2 of 355 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  Project2.vcxproj -> D:\ZZH\VS_2017\HelloWorld\x64\Release\Project2.exe
