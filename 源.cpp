@@ -136,14 +136,13 @@ void test();
 		return 0;
 	}
 	void test() {
-		char ccString1[] = "Is Page Fault??";
-		char ccString2[] = "No Page Fault??";
-		strcpy(ccString1, "No");
-		if (strcmp(ccString1, ccString2) == 0)
-			cout << ccString2;
-		else
-			cout << ccString1;
-		
+		main_my_string();
 
+
+
+		cin.get();
+		cin.get();
 	}
+	
+
 	

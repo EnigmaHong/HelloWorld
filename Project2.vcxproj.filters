@@ -23,5 +23,8 @@
     <ClInclude Include="_ZZH_.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="_Book_System_.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

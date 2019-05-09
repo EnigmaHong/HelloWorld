@@ -133,6 +133,7 @@
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="_Book_System_.hpp" />
     <ClInclude Include="_ZZH_.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

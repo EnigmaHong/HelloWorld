@@ -11,6 +11,7 @@
 #include <utility>
 #include <unordered_map>
 #include <assert.h>
+#include <_Book_System_.hpp>
 
 #include "csc.hpp"
 //#include "__CSC__/csc_array.hpp"
@@ -152,6 +153,34 @@ namespace ZZH {
 			else
 				return false;
 		}
+
+		bool _check_char_(char ch[], const char ch1[]) {
+			//判断char字符串是否相等，由于char字符串是数组形式，直接比较的话是只比较了第一个字符  类似strcmp功能
+			bool quilt = false;
+			for (int i = 0; i < strlen(ch); i++) {
+				if (ch[i] != ch1[i]) {
+					quilt = true;
+					break;
+				}
+			}
+			if (quilt) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+		int _get_char_len_(const char *p) {//计算char数组的字符数
+			int count = 0;
+			while (*p) {
+				count++;
+				p++;
+			}
+			return count;
+
+		}
+
 
 	
 
